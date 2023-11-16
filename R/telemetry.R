@@ -107,6 +107,8 @@ Telemetry <- R6::R6Class( # nolint object_name_linter
     #' By default, no navigation is tracked.
     #' @param session ShinySession object or NULL to identify the current
     #' Shiny session.
+    #' @param username Character with username. If set, it will overwrite username
+    #' from session object.
     #'
     #' @return Nothing. This method is called for side effects.
 
@@ -117,7 +119,8 @@ Telemetry <- R6::R6Class( # nolint object_name_linter
       logout = TRUE,
       browser_version = TRUE,
       navigation_input_id = NULL,
-      session = shiny::getDefaultReactiveDomain()
+      session = shiny::getDefaultReactiveDomain(),
+      username = NULL
     ) {
 
       checkmate::assert_flag(track_inputs)
@@ -128,7 +131,7 @@ Telemetry <- R6::R6Class( # nolint object_name_linter
 
       checkmate::assert_character(navigation_input_id, null.ok = TRUE)
 
-      username <- private$get_user(session)
+      username <- private$get_user(session, username)
 
       checkmate::assert(
         .combine = "or",
@@ -509,7 +512,7 @@ Telemetry <- R6::R6Class( # nolint object_name_linter
       self$data_storage$insert(
         app_name = self$app_name,
         type = type,
-        session = purrr::pluck(session, "token"),
+        session = session$token,
         details = details
       )
     },
@@ -540,11 +543,11 @@ Telemetry <- R6::R6Class( # nolint object_name_linter
       session$userData$shiny_input_values <- input_values
 
       logger::log_debug(logger::skip_formatter(
-        paste(
-          "shiny inputs initialized:",
-          paste(names(input_values), collapse = ", ")
-        )),
-        namespace = "shiny.telemetry"
+                                               paste(
+                                                 "shiny inputs initialized:",
+                                                 paste(names(input_values), collapse = ", ")
+                                               )),
+      namespace = "shiny.telemetry"
       )
 
       # Log initial value for navigation
@@ -636,7 +639,7 @@ Telemetry <- R6::R6Class( # nolint object_name_linter
 
           if (
             is.null(matching_values) ||
-            (!is.null(matching_values) && input_value %in% matching_values)
+              (!is.null(matching_values) && input_value %in% matching_values)
           ) {
 
             logger::log_debug(
@@ -687,7 +690,7 @@ Telemetry <- R6::R6Class( # nolint object_name_linter
 
       if (
         is.null(matching_values) ||
-        (!is.null(matching_values) && input_value %in% matching_values)
+          (!is.null(matching_values) && input_value %in% matching_values)
       ) {
         # save each value separately (if more than 1)
         n_values <- length(input_value)
@@ -713,7 +716,11 @@ Telemetry <- R6::R6Class( # nolint object_name_linter
       }
     },
 
-    get_user = function(session = shiny::getDefaultReactiveDomain()) {
+    get_user = function(
+      session = shiny::getDefaultReactiveDomain(),
+      force_username = NULL
+    ) {
+      if (!is.null(force_username)) return(force_username)
       if (is.null(session) || is.null(session$user)) return(NULL)
       session$user
     }

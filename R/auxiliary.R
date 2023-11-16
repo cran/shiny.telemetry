@@ -4,7 +4,7 @@
 #' @param date_to date representing the last day of results. Can be NULL.
 #' @param bucket string with name of table
 #' @param timestamp_wrapper string with function to wrap up seconds in database
-#' query
+#' query. This is a glue::glue() formatted string using the parameter 'seconds'.
 #'
 #' @return A string with SQL query.
 #'
@@ -16,11 +16,11 @@
 #' build_query_sql("table_name", Sys.Date() - 365, Sys.Date() + 365)
 #' build_query_sql("table_name", as.Date("2023-04-13"), as.Date("2000-01-01"))
 #' build_query_sql(
-#'   "table_name", as.Date("2023-04-13"), as.Date("2000-01-01"), timestamp_wrapper = "to_timestamp"
+#'   "table_name", as.Date("2023-04-13"), as.Date("2000-01-01"),
+#'   timestamp_wrapper = "to_timestamp({seconds})"
 #' )
 build_query_sql <- function(
-  bucket, date_from = NULL, date_to = NULL, timestamp_wrapper = NULL
-) {
+    bucket, date_from = NULL, date_to = NULL, timestamp_wrapper = NULL) {
   checkmate::assert_date(date_from, null.ok = TRUE)
   checkmate::assert_date(date_to, null.ok = TRUE)
 
@@ -31,12 +31,12 @@ build_query_sql <- function(
     ifelse(!is.null(date_from) || !is.null(date_to), "WHERE", "")
   )
 
-  build_timestamp <- function(value) {  # nolint: object_usage_linter
+  build_timestamp <- function(value) { # nolint: object_usage_linter
     seconds <- lubridate::as_datetime(value) %>% as.double()
     if (is.null(timestamp_wrapper)) {
       return(seconds)
     }
-    glue::glue("{timestamp_wrapper}({seconds})")
+    return(glue::glue(timestamp_wrapper))
   }
 
   where <- list(.sep = " AND ")
@@ -60,5 +60,52 @@ build_query_sql <- function(
   }
 
   query <- c(query, do.call(glue::glue, where))
-  do.call(glue::glue, query) %>% stringr::str_trim()
+  trimws(do.call(glue::glue, query))
+}
+
+#' Process a row's detail (from DB) in JSON format to a data.frame
+#'
+#' @param details_json string containing details a valid JSON, NULL or NA
+#'
+#' @return A data.frame with 1 row and a column for every property on the JSON.
+#'
+#' @noRd
+#' @keywords internal
+process_row_details <- function(details_json) {
+  if (is.null(details_json) || is.na(details_json) || details_json == "") {
+    return(data.frame(.empty = "true"))
+  }
+
+  # fromJSON() cannot be called with vector input, it needs to
+  #  iterated one by one. It also does not allow for NULL, NA nor
+  #  empty strings.
+  tmp_result <- details_json %>%
+    jsonlite::fromJSON() %>%
+    purrr::compact()
+
+  tmp_result <- tmp_result %>%
+    purrr::map(function(.x) {
+      if (checkmate::test_atomic_vector(.x, min.len = 2)) {
+        return(list(.x))
+      }
+      if (length(.x) > 1) {
+        return(jsonlite::toJSON(.x, auto_unbox = TRUE))
+      }
+      .x
+    })
+
+  tmp_result <- do.call(cbind, tmp_result) %>%
+    as.data.frame() %>%
+    # All un-nested columns have to be character type.
+    dplyr::mutate(dplyr::across(
+      dplyr::everything(),
+      format
+    ))
+
+  # Catch for when `details` json is valid, but empty.
+  if (NROW(tmp_result) == 0) {
+    return(data.frame(.empty = "true"))
+  }
+
+  tmp_result
 }

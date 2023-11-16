@@ -74,10 +74,10 @@ The developers and administrators of the dashboard can access the data that is g
 
 ```R
 # After running the instrumented app
-shiny.telemetry::Telemetry$new()$data_storage$read_events("2020-01-01", "2050-01-01")
+shiny.telemetry::Telemetry$new()$data_storage$read_event_data("2020-01-01", "2050-01-01")
 
 # Default provider and path for Telemetry$new()
-shiny.telemetry::DataStorageSQLite$new(db_path = "telemetry.sqlite")$read_events("2020-01-01", "2050-01-01")
+shiny.telemetry::DataStorageSQLite$new(db_path = "telemetry.sqlite")$read_event_data("2020-01-01", "2050-01-01")
 ```
 
 The package includes an analytics dashboard to view the data.
@@ -95,6 +95,7 @@ that can range from local filesystem storage to a remote Plumber REST API instan
 * Remote SQL database:
   * MariaDB using `DataStorageMariaDB` class
   * PostgreSQL using `DataStoragePostgreSQL` class
+  * MS SQL Server using `DataStorageMSSQLServer` class
 * Plumber REST API using `DataStoragePlumber` class
   * In turn, the Plumber data provider will use one of the other classes above
   as the method of data storage.
@@ -115,6 +116,10 @@ logger::log_threshold("DEBUG", namespace = "shiny.telemetry")
 
 _note_: This command can be run before the Shiny call or by adding it to the `.Rprofile`.
 
+## Contributing
+
+See [CONTRIBUTING](https://appsilon.github.io/shiny.telemetry/CONTRIBUTING.html).
+
 ## Appsilon
 
 <img src="https://avatars0.githubusercontent.com/u/6096772" align="right" alt="" width="6%" />
@@ -124,6 +129,6 @@ Learn more at [appsilon.com](https://appsilon.com).
 
 Get in touch [opensource@appsilon.com](mailto:opensource@appsilon.com)
 
-Check the [Rhinoverse](https://rhinoverse.dev).
+Explore the [Rhinoverse](https://rhinoverse.dev) - a family of R packages built around [Rhino](https://appsilon.github.io/rhino/)!
 
 <a href = "https://appsilon.com/careers/" target="_blank"><img src="https://raw.githubusercontent.com/Appsilon/website-cdn/gh-pages/WeAreHiring1.png" alt="We are hiring!"/></a>

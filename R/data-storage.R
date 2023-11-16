@@ -1,4 +1,3 @@
-
 #' Data Storage abstract class to handle all the read/write operations
 #'
 #' @description
@@ -10,7 +9,6 @@ DataStorage <- R6::R6Class( # nolint object_name_linter
   public = list(
 
     #' @description initialize data storage object common with all providers
-
     initialize = function() {
       stop(paste(class(self)[1], "is an abstract class that can't be initialized."))
     },
@@ -30,9 +28,7 @@ DataStorage <- R6::R6Class( # nolint object_name_linter
     #'
     #' @return Nothing. This method is called for side effects.
 
-    insert = function(
-      app_name, type, session = NULL, details = NULL, time = NULL
-    ) {
+    insert = function(app_name, type, session = NULL, details = NULL, time = NULL) {
       values <- private$insert_checks(
         app_name, type, session, details, time
       )
@@ -44,16 +40,24 @@ DataStorage <- R6::R6Class( # nolint object_name_linter
     #' @param date_from (optional) date representing the starting day of
     #' results.
     #' @param date_to (optional) date representing the last day of results.
+    #' @param app_name (optional) string identifying the Dashboard-specific event
+    #' data
 
-    read_event_data = function(date_from = NULL, date_to = NULL) {
+    read_event_data = function(date_from = NULL, date_to = NULL, app_name = NULL) {
       date_from <- private$check_date(date_from, .var_name = "date_from")
       date_to <- private$check_date(date_to, .var_name = "date_to")
+      checkmate::assert_string(app_name, null.ok = TRUE)
 
       db_data <- private$read_data(date_from, date_to, self$event_bucket) %>%
         dplyr::mutate(
           date = lubridate::as_date(.data$time),
           time = lubridate::as_datetime(.data$time)
         )
+
+      if (!is.null(app_name)) {
+        app_name_temp <- app_name
+        db_data <- dplyr::filter(db_data, .data$app_name == app_name_temp)
+      }
 
       # Ensure standard value types always return on resutls
       #  :: (id, value, username)
@@ -78,9 +82,7 @@ DataStorage <- R6::R6Class( # nolint object_name_linter
 
     #' @field event_bucket string that identifies the bucket to store user
     #' related and action data
-
     event_bucket = function() "event_log"
-
   ),
   private = list(
     check_date = function(date_value, .var_name) {
@@ -90,31 +92,30 @@ DataStorage <- R6::R6Class( # nolint object_name_linter
         return(NULL)
       }
 
-      tryCatch({
-        date_value <- as.Date(date_value)
-        checkmate::assert_date(date_value, .var.name = .var_name)
-        date_value
-      }, error = function(err) {
-        date_value
-        rlang::abort(glue::glue(
-          "Assertion on '{.var_name}' failed: Must be of class 'Date' ",
-          "or a valid date format of class 'String' ('yyyy-mm-dd')."
-        ))
-      })
+      tryCatch(
+        {
+          date_value <- as.Date(date_value)
+          checkmate::assert_date(date_value, .var.name = .var_name)
+          date_value
+        },
+        error = function(err) {
+          date_value
+          rlang::abort(glue::glue(
+            "Assertion on '{.var_name}' failed: Must be of class 'Date' ",
+            "or a valid date format of class 'String' ('yyyy-mm-dd')."
+          ))
+        }
+      )
     },
-
     close_connection = function() {
       rlang::abort("Method not implemented.")
     },
-
     write = function(values, bucket) {
       rlang::abort("Method not implemented.")
     },
-
     read_data = function(date_from, date_to, bucket) {
       rlang::abort("Method not implemented.")
     },
-
     insert_checks = function(app_name, type, session, details, time) {
       checkmate::assert_string(app_name)
       checkmate::assert_string(type, null.ok = TRUE)
@@ -148,34 +149,12 @@ DataStorage <- R6::R6Class( # nolint object_name_linter
       checkmate::assert_data_frame(x)
       checkmate::assert_string(column_name)
 
+      if (is.null(x[[column_name]])) {
+        return(x)
+      }
+
       x[[column_name]] <- x[[column_name]] %>%
-        purrr::map(
-          function(.x) {
-            if (is.null(.x) || is.na(.x) || .x == "") {
-              return(data.frame(.empty = "true"))
-            }
-
-            # fromJSON() cannot be called with vector input, it needs to
-            #  iterated one by one. It also does not allow for NULL, NA nor
-            #  empty strings.
-            tmp_result <- .x  %>%
-              jsonlite::fromJSON() %>%
-              purrr::compact() %>%
-              as.data.frame()  %>%
-              # All un-nested columns have to be character type.
-              dplyr::mutate(dplyr::across(
-                dplyr::everything(),
-                as.character
-              ))
-
-            # Catch for when `details` json is valid, but empty.
-            if (NROW(tmp_result) == 0) {
-              return(data.frame(.empty = "true"))
-            }
-
-            tmp_result
-          }
-        ) %>%
+        purrr::map(process_row_details) %>%
         dplyr::bind_rows()
 
       x <- tidyr::unnest(x, cols = dplyr::all_of(column_name))
