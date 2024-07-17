@@ -1,8 +1,19 @@
-# Instrumented app with MariaDB backend
+# Instrumented app with Microsoft SQL Server backend
 
-This example application uses MariaDB as a provider for data storage.
+This example application uses MS SQL as a provider for data storage.
 
 It is bundled with an example docker container provided by `docker-compose.yml`.
-The MariaDB instance has to be running for the application and analytics dashboard to work.
+The database instance has to be running for the application and analytics dashboard to work.
 
-_note:_ This should also suport a MySQL database.
+### Requirements
+
+The database needs to be created manually. Chunk below allows to create databse using the `sqlcmd` utility.
+
+```
+CREATE DATABSAE my_db
+GO
+```
+
+The Microsoft ODBC 18 driver has to be installed in the system to use this example.
+
+https://learn.microsoft.com/en-us/sql/connect/odbc/microsoft-odbc-driver-for-sql-server?view=sql-server-ver16&viewFallbackFrom=sql-server-ver18

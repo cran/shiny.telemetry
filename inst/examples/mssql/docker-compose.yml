@@ -2,14 +2,11 @@
 version: '3.1'
 
 services:
-
-  db:
-    image: mariadb
+  mssql:
+    image: mcr.microsoft.com/mssql/server
     restart: always
     environment:
-      MARIADB_ROOT_PASSWORD: "2272e4f5-c7cc-45d0-9400-31a5f1c81e4d"
-      MARIADB_PASSWORD: mysecretpassword
-      MARIADB_USER: mariadb
-      MARIADB_DATABASE: shiny_telemetry
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: 'my-Secr3t_Password'
     ports:
-      - 3306:3306
+      - 1433:1433

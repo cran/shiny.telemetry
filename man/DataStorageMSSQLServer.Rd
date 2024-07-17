@@ -4,20 +4,25 @@
 \alias{DataStorageMSSQLServer}
 \title{Data storage class with MS SQL Server provider}
 \description{
-Implementation of the DataStorage R6 class to MS SQL Server backend using a
+Implementation of the \code{\link{DataStorage}} R6 class to MS SQL Server backend using a
 unified API for read/write operations. This provider requires a configured
-and named ODBC driver to be set up on your system, for example, "ODBC
-Driver 17 for SQL Server" or "ODBC Driver 18 for SQL Server".
+and named \code{ODBC} driver to be set up on your system, for example, "\code{ODBC}
+Driver 17 for SQL Server" or "\code{ODBC} Driver 18 for SQL Server".
 
 Note that MS SQL Server support requires a subtly different database schema:
-the 'time' field is stored as a 'DATETIME' rather than a 'TIMESTAMP'.
+the \code{time} field is stored as a \code{DATETIME} rather than a \code{TIMESTAMP}.
 }
 \examples{
 \dontrun{
-data_storage <- DataStorageMSSQLServer$new(user = "sqlserver",
-password = "mysecretpassword", hostname = "servername", port = 1433,
-dbname = "my_db", driver = "ODBC Driver 17 for SQL Server",
-trust_server_certificate = "NO")
+data_storage <- DataStorageMSSQLServer$new(
+  user = "sa",
+  password = "my-Secr3t_Password",
+  hostname = "localhost",
+  port = 1433,
+  dbname = "shiny_telemetry",
+  driver = "ODBC Driver 18 for SQL Server",
+  trust_server_certificate = "YES"
+)
 
 data_storage$insert("example", "test_event", "session1")
 data_storage$insert("example", "input", "s1", list(id = "id1"))
@@ -83,8 +88,8 @@ Initialize the data storage class
 \item{\code{dbname}}{string with the name of the database in the MS SQL Server
 instance.}
 
-\item{\code{driver}}{string with the name of the ODBC driver class for MS SQL,
-for example "ODBC Driver 17 for SQL Server".}
+\item{\code{driver}}{string with the name of the \code{ODBC} driver class for MS SQL,
+for example "\code{ODBC} Driver 17 for SQL Server".}
 
 \item{\code{trust_server_certificate}}{string with "NO" or "YES", setting
 whether or not to trust the server's certificate implicitly.}

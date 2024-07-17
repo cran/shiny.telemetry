@@ -1,7 +1,7 @@
 #' Data storage class with MariaDB / MySQL provider
 #'
 #' @description
-#' Implementation of the DataStorage R6 class to MariaDB backend using a
+#' Implementation of the [`DataStorage`] R6 class to MariaDB backend using a
 #' unified API for read/write operations
 #'
 #' @export
@@ -23,7 +23,7 @@
 #' data_storage$read_event_data(Sys.Date() - 1, Sys.Date() + 1)
 #' data_storage$close()
 #' }
-DataStorageMariaDB <- R6::R6Class( # nolint object_name_linter
+DataStorageMariaDB <- R6::R6Class( # nolint object_name.
   classname = "DataStorageMariaDB",
   inherit = DataStorageSQLFamily,
   #

@@ -35,7 +35,8 @@ init_test_postgres <- function(.local_envir = parent.frame()) {
     password = Sys.getenv("TEST_POSTGRESQL_PASSWORD"),
     port = Sys.getenv("TEST_POSTGRESQL_PORT"),
     dbname = Sys.getenv("TEST_POSTGRESQL_DBNAME"),
-    hostname = Sys.getenv("TEST_POSTGRESQL_HOSTNAME")
+    hostname = Sys.getenv("TEST_POSTGRESQL_HOSTNAME"),
+    driver = Sys.getenv("TEST_POSTGRESQL_DRIVER")
   )
   testthat::skip_on_cran()
   skip_if_storage_config_missing(storage_config, "PostgreSQL")
@@ -79,6 +80,23 @@ init_test_mssql <- function(.local_envir = parent.frame()) {
   storage_config$port <- as.numeric(storage_config$port)
 
   do.call(DataStorageMSSQLServer$new, storage_config)
+}
+
+init_test_mongodb <- function(.local_envir = parent.frame()) {
+  storage_config <- list(
+    username = Sys.getenv("TEST_MONGODB_USER"),
+    password = Sys.getenv("TEST_MONGODB_PASSWORD"),
+    host = Sys.getenv("TEST_MONGODB_HOSTNAME"),
+    port = Sys.getenv("TEST_MONGODB_PORT"),
+    db = Sys.getenv("TEST_MONGODB_DBNAME")
+  )
+
+  testthat::skip_on_cran()
+  skip_if_storage_config_missing(storage_config, "MongoDB")
+
+  storage_config$port <- as.numeric(storage_config$port)
+
+  do.call(DataStorageMongoDB$new, storage_config)
 }
 
 init_test_logfile <- function(.local_envir = parent.frame()) {

@@ -4,7 +4,7 @@
 \alias{DataStoragePostgreSQL}
 \title{Data storage class with PostgreSQL provider}
 \description{
-Implementation of the DataStorage R6 class to PostgreSQL backend using a
+Implementation of the \code{\link{DataStorage}} R6 class to PostgreSQL backend using a
 unified API for read/write operations
 }
 \examples{
@@ -55,7 +55,8 @@ Initialize the data storage class
   password = NULL,
   hostname = "127.0.0.1",
   port = 5432,
-  dbname = "shiny_telemetry"
+  dbname = "shiny_telemetry",
+  driver = "RPostgreSQL"
 )}\if{html}{\out{</div>}}
 }
 
@@ -70,8 +71,9 @@ Initialize the data storage class
 
 \item{\code{port}}{numeric value with the port number of PostgreSQL instance.}
 
-\item{\code{dbname}}{string with the name of the database in the PostgreSQL
-instance.}
+\item{\code{dbname}}{string with the name of the database in the PostgreSQL instance.}
+
+\item{\code{driver}}{string, to select PostgreSQL driver among \code{c("RPostgreSQL", "RPostgres")}.}
 }
 \if{html}{\out{</div>}}
 }

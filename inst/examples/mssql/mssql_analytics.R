@@ -18,7 +18,7 @@ library(shiny.telemetry)
 # Default storage backend using MariaDB
 data_storage <- DataStorageMSSQLServer$new(
   user = "sa",
-  password = "yourStrong)1Password",
+  password = "my-Secr3t_Password",
   hostname = "localhost",
   port = 1433,
   dbname = "my_db",

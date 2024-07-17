@@ -1,22 +1,27 @@
 #' Data storage class with MS SQL Server provider
 #'
 #' @description
-#' Implementation of the DataStorage R6 class to MS SQL Server backend using a
+#' Implementation of the [`DataStorage`] R6 class to MS SQL Server backend using a
 #' unified API for read/write operations. This provider requires a configured
-#' and named ODBC driver to be set up on your system, for example, "ODBC
-#' Driver 17 for SQL Server" or "ODBC Driver 18 for SQL Server".
+#' and named `ODBC` driver to be set up on your system, for example, "`ODBC`
+#' Driver 17 for SQL Server" or "`ODBC` Driver 18 for SQL Server".
 #'
 #' Note that MS SQL Server support requires a subtly different database schema:
-#' the 'time' field is stored as a 'DATETIME' rather than a 'TIMESTAMP'.
+#' the `time` field is stored as a `DATETIME` rather than a `TIMESTAMP`.
 #'
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' data_storage <- DataStorageMSSQLServer$new(user = "sqlserver",
-#' password = "mysecretpassword", hostname = "servername", port = 1433,
-#' dbname = "my_db", driver = "ODBC Driver 17 for SQL Server",
-#' trust_server_certificate = "NO")
+#' data_storage <- DataStorageMSSQLServer$new(
+#'   user = "sa",
+#'   password = "my-Secr3t_Password",
+#'   hostname = "localhost",
+#'   port = 1433,
+#'   dbname = "shiny_telemetry",
+#'   driver = "ODBC Driver 18 for SQL Server",
+#'   trust_server_certificate = "YES"
+#' )
 #'
 #' data_storage$insert("example", "test_event", "session1")
 #' data_storage$insert("example", "input", "s1", list(id = "id1"))
@@ -31,7 +36,7 @@
 #' data_storage$read_event_data(Sys.Date() - 1, Sys.Date() + 1)
 #' data_storage$close()
 #' }
-DataStorageMSSQLServer <- R6::R6Class( # nolint object_name_linter
+DataStorageMSSQLServer <- R6::R6Class( # nolint object_name.
   classname = "DataStorageMSSQLServer",
   inherit = DataStorageSQLFamily,
   #
@@ -46,8 +51,8 @@ DataStorageMSSQLServer <- R6::R6Class( # nolint object_name_linter
     #' @param port numeric value with the port number of MS SQL Server instance.
     #' @param dbname string with the name of the database in the MS SQL Server
     #' instance.
-    #' @param driver string with the name of the ODBC driver class for MS SQL,
-    #' for example "ODBC Driver 17 for SQL Server".
+    #' @param driver string with the name of the `ODBC` driver class for MS SQL,
+    #' for example "`ODBC` Driver 17 for SQL Server".
     #' @param trust_server_certificate string with "NO" or "YES", setting
     #' whether or not to trust the server's certificate implicitly.
 

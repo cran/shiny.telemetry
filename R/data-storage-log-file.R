@@ -1,7 +1,7 @@
-#' Data storage class for JSON Log File
+#' Data storage class for `JSON` Log File
 #'
 #' @description
-#' Implementation of the DataStorage R6 class to a JSON log file backend using a unified
+#' Implementation of the [`DataStorage`] R6 class to a `JSON` log file backend using a unified
 #' API for read/write operations
 #'
 #' @export
@@ -23,7 +23,7 @@
 #' data_storage$read_event_data(Sys.Date() - 1, Sys.Date() + 1)
 #'
 #' file.remove(log_file_path)
-DataStorageLogFile <- R6::R6Class( # nolint object_name_linter
+DataStorageLogFile <- R6::R6Class( # nolint object_name.
   classname = "DataStorageLogFile",
   inherit = DataStorage,
   #
@@ -32,7 +32,7 @@ DataStorageLogFile <- R6::R6Class( # nolint object_name_linter
 
     #' @description
     #' Initialize the data storage class
-    #' @param log_file_path string with path to JSON log file user actions
+    #' @param log_file_path string with path to `JSON` log file user actions
 
     initialize = function(log_file_path) {
       logger::log_debug(

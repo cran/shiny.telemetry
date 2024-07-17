@@ -79,7 +79,7 @@ telemetry <- Telemetry$new(
   app_name = "demo",
   data_storage = DataStorageMSSQLServer$new(
     user = "sa",
-    password = "yourStrong)1Password",
+    password = "my-Secr3t_Password",
     hostname = "localhost",
     port = 1433,
     dbname = "my_db",

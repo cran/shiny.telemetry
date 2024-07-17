@@ -1,7 +1,7 @@
 #' Data storage class with SQLite provider
 #'
 #' @description
-#' Implementation of the DataStorage R6 class to SQLite backend using a unified
+#' Implementation of the [`DataStorage`] R6 class to SQLite backend using a unified
 #' API for read/write operations
 #'
 #' @export
@@ -40,7 +40,7 @@
 #' data_storage$read_event_data()
 #' data_storage$read_event_data(Sys.Date() - 1, Sys.Date() + 1)
 #' }
-DataStoragePlumber <- R6::R6Class( # nolint object_name_linter
+DataStoragePlumber <- R6::R6Class( # nolint object_name.
   classname = "DataStoragePlumber",
   inherit = DataStorage,
   #
