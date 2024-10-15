@@ -1,7 +1,7 @@
 Type: Package
 Package: shiny.telemetry
 Title: 'Shiny' App Usage Telemetry
-Version: 0.3.0
+Version: 0.3.1
 Authors@R: c(
     person("André", "Veríssimo", , "opensource+andre@appsilon.com", role = c("aut", "cre")),
     person("Kamil", "Żyła", , "kamil@appsilon.com", role = "aut"),
@@ -23,17 +23,17 @@ BugReports: https://github.com/Appsilon/shiny.telemetry/issues
 Imports: checkmate, digest, dplyr (>= 1.1.0), glue, htmltools, httr2,
         jsonlite, lifecycle, logger, lubridate, odbc, purrr, R6, rlang,
         RSQLite, shiny, stringr, tidyr
-Suggests: box, config, DT, mongolite, plotly, plumber, RColorBrewer,
-        RMariaDB, RPostgres, RPostgreSQL, scales, semantic.dashboard
-        (>= 0.1.1), shiny.semantic (>= 0.2.0), shinyjs, testthat (>=
-        3.1.7), timevis, withr, knitr, rmarkdown
+Suggests: box, config, DT, knitr, mongolite, plotly, plumber,
+        RColorBrewer, RMariaDB, rmarkdown, RPostgres, RPostgreSQL,
+        scales, semantic.dashboard (>= 0.1.1), shiny.semantic (>=
+        0.2.0), shinyjs, testthat (>= 3.1.7), timevis, withr
+VignetteBuilder: knitr
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
-RoxygenNote: 7.3.1
-VignetteBuilder: knitr
+RoxygenNote: 7.3.2
 NeedsCompilation: no
-Packaged: 2024-07-17 13:28:14 UTC; averissimo
+Packaged: 2024-10-11 13:11:41 UTC; averissimo
 Author: André Veríssimo [aut, cre],
   Kamil Żyła [aut],
   Krystian Igras [aut],
@@ -43,4 +43,4 @@ Author: André Veríssimo [aut, cre],
   Appsilon Sp. z o.o. [cph]
 Maintainer: André Veríssimo <opensource+andre@appsilon.com>
 Repository: CRAN
-Date/Publication: 2024-07-17 13:40:02 UTC
+Date/Publication: 2024-10-15 08:00:02 UTC

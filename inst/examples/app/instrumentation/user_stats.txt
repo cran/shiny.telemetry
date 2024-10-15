@@ -1,35 +1,11 @@
-{"app_name":["demo"],"type":["login"],"session":["69b608f6236a986331a2108b583543d6"],"details":["{\"username\":[\"anon_user_80d0f82c49ad7351617aa8e1dd1305ada3f1064830425a2fce74fb157247114e\"]}"],"time":[1721210904.6642]}
-{"app_name":["demo"],"type":["navigation"],"session":["69b608f6236a986331a2108b583543d6"],"details":["{\"id\":[\"uisidebar\"],\"value\":[\"dashboard\"]}"],"time":[1721210904.6868]}
-{"app_name":["demo"],"type":["browser"],"session":["69b608f6236a986331a2108b583543d6"],"details":["{\"value\":[\"Chrome 120\"]}"],"time":[1721210904.7118]}
-{"app_name":["demo"],"type":["logout"],"session":["69b608f6236a986331a2108b583543d6"],"details":["{\"username\":[\"anon_user_80d0f82c49ad7351617aa8e1dd1305ada3f1064830425a2fce74fb157247114e\"]}"],"time":[1721210905.9459]}
-{"app_name":["demo"],"type":["login"],"session":["d35d20eb42db658b49661f32e75cfb56"],"details":["{\"username\":[\"anon_user_3fd1392d423e069290ad6405c368532fa00b09e7dd57640436b65e4d8201befd\"]}"],"time":[1721210927.7313]}
-{"app_name":["demo"],"type":["navigation"],"session":["d35d20eb42db658b49661f32e75cfb56"],"details":["{\"id\":[\"uisidebar\"],\"value\":[\"dashboard\"]}"],"time":[1721210927.754]}
-{"app_name":["demo"],"type":["browser"],"session":["d35d20eb42db658b49661f32e75cfb56"],"details":["{\"value\":[\"Chrome 120\"]}"],"time":[1721210930.18]}
-{"app_name":["demo"],"type":["logout"],"session":["d35d20eb42db658b49661f32e75cfb56"],"details":["{\"username\":[\"anon_user_3fd1392d423e069290ad6405c368532fa00b09e7dd57640436b65e4d8201befd\"]}"],"time":[1721210931.6125]}
-{"app_name":["demo"],"type":["login"],"session":["5de1e476361e405bbba9a536e5675a72"],"details":["{\"username\":[\"anon_user_59782346dc9477f32b03a37b54422aedab67d8f0b1596a96eb656879718ae5c9\"]}"],"time":[1721210954.3783]}
-{"app_name":["demo"],"type":["navigation"],"session":["5de1e476361e405bbba9a536e5675a72"],"details":["{\"id\":[\"uisidebar\"],\"value\":[\"dashboard\"]}"],"time":[1721210954.4222]}
-{"app_name":["demo"],"type":["error"],"session":["5de1e476361e405bbba9a536e5675a72"],"details":["{\"output_id\":[\"global\"],\"message\":[\"yada!\"]}"],"time":[1721210956.6213]}
-{"app_name":["demo"],"type":["logout"],"session":["5de1e476361e405bbba9a536e5675a72"],"details":["{\"username\":[\"anon_user_59782346dc9477f32b03a37b54422aedab67d8f0b1596a96eb656879718ae5c9\"]}"],"time":[1721210958.8623]}
-{"app_name":["demo"],"type":["login"],"session":["66b9f6190dbaef4189a7a3efd7f28b6b"],"details":["{\"username\":[\"anon_user_e94d6970395caf0cc899417cf5825e0e5fc0ee1c1ea004417dd598aae7168d2e\"]}"],"time":[1721215046.7648]}
-{"app_name":["demo"],"type":["navigation"],"session":["66b9f6190dbaef4189a7a3efd7f28b6b"],"details":["{\"id\":[\"uisidebar\"],\"value\":[\"dashboard\"]}"],"time":[1721215046.8119]}
-{"app_name":["demo"],"type":["browser"],"session":["66b9f6190dbaef4189a7a3efd7f28b6b"],"details":["{\"value\":[\"Chrome 120\"]}"],"time":[1721215046.8969]}
-{"app_name":["demo"],"type":["input"],"session":["66b9f6190dbaef4189a7a3efd7f28b6b"],"details":["{\"id\":[\"bins\"],\"value\":[29]}"],"time":[1721215048.0526]}
-{"app_name":["demo"],"type":["input"],"session":["66b9f6190dbaef4189a7a3efd7f28b6b"],"details":["{\"id\":[\"bins\"],\"value\":[37]}"],"time":[1721215048.4608]}
-{"app_name":["demo"],"type":["input"],"session":["66b9f6190dbaef4189a7a3efd7f28b6b"],"details":["{\"id\":[\"apply_slider\"],\"value\":[1]}"],"time":[1721215048.8339]}
-{"app_name":["demo"],"type":["input"],"session":["66b9f6190dbaef4189a7a3efd7f28b6b"],"details":["{\"id\":[\"apply_slider\"],\"value\":[2]}"],"time":[1721215048.9511]}
-{"app_name":["demo"],"type":["input"],"session":["66b9f6190dbaef4189a7a3efd7f28b6b"],"details":["{\"id\":[\"apply_slider\"],\"value\":[3]}"],"time":[1721215049.155]}
-{"app_name":["demo"],"type":["input"],"session":["66b9f6190dbaef4189a7a3efd7f28b6b"],"details":["{\"id\":[\"apply_slider\"],\"value\":[4]}"],"time":[1721215049.2501]}
-{"app_name":["demo"],"type":["input"],"session":["66b9f6190dbaef4189a7a3efd7f28b6b"],"details":["{\"id\":[\"apply_slider\"],\"value\":[5]}"],"time":[1721215049.444]}
-{"app_name":["demo"],"type":["input"],"session":["66b9f6190dbaef4189a7a3efd7f28b6b"],"details":["{\"id\":[\"bins\"],\"value\":[11]}"],"time":[1721215049.9583]}
-{"app_name":["demo"],"type":["input"],"session":["66b9f6190dbaef4189a7a3efd7f28b6b"],"details":["{\"id\":[\"apply_slider\"],\"value\":[6]}"],"time":[1721215051.1512]}
-{"app_name":["demo"],"type":["logout"],"session":["66b9f6190dbaef4189a7a3efd7f28b6b"],"details":["{\"username\":[\"anon_user_e94d6970395caf0cc899417cf5825e0e5fc0ee1c1ea004417dd598aae7168d2e\"]}"],"time":[1721215062.7113]}
-{"app_name":["demo"],"type":["login"],"session":["545837632521508f7aa4e55c2a5e57ca"],"details":["{\"username\":[\"anon_user_a27181414d6aeaa06506e2267e6dcb594dad51ecd5c76dfd075e8258833494e4\"]}"],"time":[1721215064.893]}
-{"app_name":["demo"],"type":["navigation"],"session":["545837632521508f7aa4e55c2a5e57ca"],"details":["{\"id\":[\"uisidebar\"],\"value\":[\"dashboard\"]}"],"time":[1721215064.9547]}
-{"app_name":["demo"],"type":["error"],"session":["545837632521508f7aa4e55c2a5e57ca"],"details":["{\"output_id\":[\"global\"],\"message\":[\"yada\"]}"],"time":[1721215064.9892]}
-{"app_name":["demo"],"type":["browser"],"session":["545837632521508f7aa4e55c2a5e57ca"],"details":["{\"value\":[\"Chrome 120\"]}"],"time":[1721215067.6355]}
-{"app_name":["demo"],"type":["logout"],"session":["545837632521508f7aa4e55c2a5e57ca"],"details":["{\"username\":[\"anon_user_a27181414d6aeaa06506e2267e6dcb594dad51ecd5c76dfd075e8258833494e4\"]}"],"time":[1721215069.3467]}
-{"app_name":["demo"],"type":["login"],"session":["8aa99d0aef6bf69386c55052252a3dac"],"details":["{\"username\":[\"anon_user_473f44e6576d165d0fb9dfcbb41b9f789d0e51ca3559dcb5532a9e16a18fbaa5\"]}"],"time":[1721215137.7155]}
-{"app_name":["demo"],"type":["navigation"],"session":["8aa99d0aef6bf69386c55052252a3dac"],"details":["{\"id\":[\"uisidebar\"],\"value\":[\"dashboard\"]}"],"time":[1721215137.7758]}
-{"app_name":["demo"],"type":["error"],"session":["8aa99d0aef6bf69386c55052252a3dac"],"details":["{\"output_id\":[\"global\"],\"message\":[\"object 'object_does_not_exist' not found\"]}"],"time":[1721215137.881]}
-{"app_name":["demo"],"type":["browser"],"session":["8aa99d0aef6bf69386c55052252a3dac"],"details":["{\"value\":[\"Chrome 120\"]}"],"time":[1721215139.7785]}
-{"app_name":["demo"],"type":["logout"],"session":["8aa99d0aef6bf69386c55052252a3dac"],"details":["{\"username\":[\"anon_user_473f44e6576d165d0fb9dfcbb41b9f789d0e51ca3559dcb5532a9e16a18fbaa5\"]}"],"time":[1721215141.5531]}
+{"app_name":["demo"],"type":["login"],"session":["40b172114ff6c4b2f625af8e82911253"],"details":["{\"username\":{}}"],"time":[1723027668.1244]}
+{"app_name":["demo"],"type":["navigation"],"session":["40b172114ff6c4b2f625af8e82911253"],"details":["{\"id\":[\"uisidebar\"],\"value\":[\"dashboard\"]}"],"time":[1723027668.3995]}
+{"app_name":["demo"],"type":["browser"],"session":["40b172114ff6c4b2f625af8e82911253"],"details":["{\"value\":[\"Chrome 120\"]}"],"time":[1723027668.5242]}
+{"app_name":["demo"],"type":["input"],"session":["40b172114ff6c4b2f625af8e82911253"],"details":["{\"id\":[\"apply_slider\"],\"value\":[1]}"],"time":[1723027668.9627]}
+{"app_name":["demo"],"type":["input"],"session":["40b172114ff6c4b2f625af8e82911253"],"details":["{\"id\":[\"apply_slider\"],\"value\":[2]}"],"time":[1723027669.0598]}
+{"app_name":["demo"],"type":["input"],"session":["40b172114ff6c4b2f625af8e82911253"],"details":["{\"id\":[\"apply_slider\"],\"value\":[3]}"],"time":[1723027669.2125]}
+{"app_name":["demo"],"type":["input"],"session":["40b172114ff6c4b2f625af8e82911253"],"details":["{\"id\":[\"bins\"],\"value\":[31]}"],"time":[1723027669.7527]}
+{"app_name":["demo"],"type":["navigation"],"session":["40b172114ff6c4b2f625af8e82911253"],"details":["{\"id\":[\"uisidebar\"],\"value\":[\"another-widgets\"]}"],"time":[1723027670.0713]}
+{"app_name":["demo"],"type":["navigation"],"session":["40b172114ff6c4b2f625af8e82911253"],"details":["{\"id\":[\"uisidebar\"],\"value\":[\"widgets\"]}"],"time":[1723027670.616]}
+{"app_name":["demo"],"type":["input"],"session":["40b172114ff6c4b2f625af8e82911253"],"details":["{\"id\":[\"widgets-button\"],\"value\":[1]}"],"time":[1723027672.0199]}
+{"app_name":["demo"],"type":["logout"],"session":["40b172114ff6c4b2f625af8e82911253"],"details":["{\"username\":{}}"],"time":[1723027673.5163]}
